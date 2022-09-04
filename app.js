@@ -64,6 +64,7 @@ disPlayCategories(data.data.news_category)
      console.log(posts);
      document.getElementById('total-post').innerText = posts.length;
      const categoriesPost = document.getElementById('categoriesPost');
+     categoriesPost.innerHTML='';
     posts.forEach(post=>{
       const colDiv = document.createElement('div');
       colDiv.classList.add('col')
