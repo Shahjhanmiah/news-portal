@@ -3,14 +3,14 @@ const loadCategories = async() =>{
     const res = await fetch(url);
     const  data = await res.json();
 //(data.data.news_category);
-//console.log(data.data.news_category);
+console.log(data.data.news_category);
 disPlayCategories(data.data.news_category)
 
 
 
 }
  const disPlayCategories = Categories=>{
-    //console.log(Categories);
+    console.log(Categories);
     const newsCategories = document.getElementById('news-Categories');
     Categories.forEach(Categorie =>{
         //console.log(Categorie)
@@ -43,7 +43,9 @@ disPlayCategories(data.data.news_category)
   }
 }
 
-//
+// 
+
+
 
 
 
@@ -60,6 +62,7 @@ disPlayCategories(data.data.news_category)
   loadCategoriesPost();
   const disPlayCategoriesPost = posts =>{
      console.log(posts);
+     document.getElementById('total-post').innerText = posts.length;
      const categoriesPost = document.getElementById('categoriesPost');
     posts.forEach(post=>{
       const colDiv = document.createElement('div');
