@@ -26,8 +26,25 @@ disPlayCategories(data.data.news_category)
 
 
 
- })
+ });
+ toggleSpinner(true);
+ 
+ 
  }
+ 
+ 
+ const toggleSpinner = isLoading => {
+  const loadeSection = document.getElementById('loader')
+  if(isLoading){
+      loadeSection.classList.remove('d-none')
+  }
+  else{
+      loadeSection.classList.add('d-none') 
+  }
+}
+
+//
+
 
 
  loadCategories();
@@ -35,14 +52,14 @@ disPlayCategories(data.data.news_category)
     const url =`https://openapi.programming-hero.com/api/news/category/${post}`;
     const res = await fetch(url);
     const data = await res.json();
-    //console.log(data.data)
+    console.log(data.data)
     disPlayCategoriesPost(data.data)
 
   }
 
   loadCategoriesPost();
   const disPlayCategoriesPost = posts =>{
-    // console.log(posts);
+     console.log(posts);
      const categoriesPost = document.getElementById('categoriesPost');
     posts.forEach(post=>{
       const colDiv = document.createElement('div');
@@ -72,17 +89,11 @@ disPlayCategories(data.data.news_category)
 
 
     });
+    toggleSpinner(false);
+   
+    
   }
-  const toggleSpinner =isLoading => {
-    const loadeSection = document.getElementById('loader')
-    if(isLoading){
-        loadeSection.classList.remove('d-none')
-    }
-    else{
-        loadeSection.classList.add('d-none') 
-    }
-}
-console.log(isLoading)
+  
  
     
  const loadCategoriesDeatails = async id=>{
@@ -96,11 +107,12 @@ console.log(isLoading)
   
     const displayCategoriesDeatails =posts=>{
       console.log(posts);
-    
-
   
        const modalTitle = document.getElementById('categoriesDetailModal');
- modalTitle.innerText = posts.name;
+       toggleSpinner(true);
+   
+      
+        modalTitle.innerText = posts.name;
        const categoriesDeatails = document.getElementById('news-container');
        categoriesDeatails . innerHTML =`
        <img src="${posts.image_url}" class="card-img-top" alt="">
@@ -114,6 +126,8 @@ console.log(isLoading)
       
        
         `;
+        
+      
     
     }
 
@@ -122,6 +136,9 @@ console.log(isLoading)
   
   
   loadCategoriesDeatails();
+
+  
+  
 
 
   
